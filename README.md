@@ -23,10 +23,10 @@ class CheckingAccount {
 }
 class SavingsAccount {
     - double interestRate
-    + main(*)
+    + void main()
     + void calcInterest()
-    + void setInterestRate()
-    + void getInterestRate()
+    + void setInterestRate(double interestRate)
+    + double getInterestRate()
 }
 class User["User (abstract)"] {
     - String userName
@@ -60,8 +60,10 @@ User <|-- Customer
 1. set balance to 0.0
 ### CheckingAccount(double balance)
 1. set this.balance to balance
-### void main()
-1. start();
+### static void main(String[] args) 
+// for testing
+1. CheckingAccount c = new CheckingAccount();
+1. c.start();
 ### void start()
 1. String choice = "";
 1. boolean keepGoing = true;
@@ -79,10 +81,44 @@ User <|-- Customer
         1. print "Invalid input, please try again."
     1. end if
 1. end while
-1. end start
 ### double getBalance()
 1. return balance;
 ### String getBalanceString()
 1. return String.format("$%.2f", balance);
 ### void checkBalance()
-1. 
+1. print "Checking balance..."
+1. print "Current balance: " + getBalanceString();
+### double getDouble() 
+(**private** method to error handle user inputting doubles)
+1. try
+    1. create Scanner for user input called input
+    1. put user input into a string called stringInput
+    1. convert input into a double with Double.parseDouble(stringInput)
+    1. return userInput
+1. catch (Exception e)
+    1. print "Invalid input, please try again"
+    1. return 0.0;
+1. end try
+### void makeDeposit()
+1. print "Making a deposit..."
+1. print "How much to deposit?"
+1. add getDouble() to balance
+1. print out new balance
+### void makeWithdrawal()
+1. print "Making a withdrawal..."
+1. print "How much to withdraw?"
+1. subtract getDouble() from balance
+1. print out new balance
+## Algorithm for SavingsAccount
+1. extends CheckingAccount, implements HasMenu
+### static void main(String[] args)
+// for testing
+1. SavingsAccount a = new SavingsAccount();
+1. a.start();
+### void calcInterest()
+1. double interest = balance * interestRate
+1. set balance to balance + interest
+### void setInterestRate(double interestRate)
+1. this.interestRate = interestRate;
+### double getInterestRate()
+1. return interestRate;
