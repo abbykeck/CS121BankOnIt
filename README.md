@@ -55,7 +55,7 @@ HasMenu <.. User
 User <|-- Customer
 ```
 ## Algorithm for CheckingAccount
-1. implements HasMenu, Serializable
+implements HasMenu, Serializable
 ### CheckingAccount()
 1. set balance to 0.0
 ### CheckingAccount(double balance)
@@ -110,7 +110,7 @@ User <|-- Customer
 1. subtract getDouble() from balance
 1. print out new balance
 ## Algorithm for SavingsAccount
-1. extends CheckingAccount, implements HasMenu
+extends CheckingAccount, implements HasMenu
 ### static void main(String[] args)
 // for testing
 1. SavingsAccount a = new SavingsAccount();
@@ -122,3 +122,32 @@ User <|-- Customer
 1. this.interestRate = interestRate;
 ### double getInterestRate()
 1. return interestRate;
+## Algorithm for User (abstract)
+implements HasMenu
+### boolean login()
+1. Scanner input = new Scanner(System.in);
+1. create String called inputName
+1. create String called inputPIN
+1. print "User name: "
+1. inputName = input.nextLine();
+1. print "PIN: "
+1. inputPIN = input.nextLine();
+1. if (userName.equals(inputName) && PIN.equals(inputPIN))
+    1. return true;
+1. else
+    1. return false;
+1. end if
+### boolean login(String userName, String PIN)
+1. if (this.userName.equals(userName) && this.PIN.equals(PIN))
+    1. return true;
+1. else
+    1. return false;
+1. end if
+### void setUserName(String userName)
+1. this.userName = userName;
+### String getUserName()
+1. return userName;
+### void setPIN(String PIN)
+1. this.PIN = PIN;
+### String getPIN()
+1. return PIN;
