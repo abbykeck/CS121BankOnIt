@@ -1,7 +1,9 @@
 import java.util.*;
+import java.io.*;
 
-public class CheckingAccount implements HasMenu {
+public class CheckingAccount implements HasMenu, Serializable {
 	private double balance;
+	private static final long serialVersionUID = 1L;
 	public static void main(String[] args) {
 		//System.out.println("Hello world!");
 		CheckingAccount c = new CheckingAccount();

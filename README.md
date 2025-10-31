@@ -128,21 +128,23 @@ implements HasMenu
 1. Scanner input = new Scanner(System.in);
 1. create String called inputName
 1. create String called inputPIN
+1. create boolean called isValid and set it to false
 1. print "User name: "
 1. inputName = input.nextLine();
 1. print "PIN: "
 1. inputPIN = input.nextLine();
-1. if (userName.equals(inputName) && PIN.equals(inputPIN))
-    1. return true;
-1. else
-    1. return false;
+1. if (userName.equals(inputName))
+    1. if (PIN.equals(inputPIN))
+        1. isValid = true;
 1. end if
+1. return isValid;
 ### boolean login(String userName, String PIN)
-1. if (this.userName.equals(userName) && this.PIN.equals(PIN))
-    1. return true;
-1. else
-    1. return false;
+1. create boolean called isValid and set it to false
+1. if (this.userName.equals(userName))
+    1. if (this.PIN.equals(PIN))
+        1. isValid = true;
 1. end if
+1. return isValid;
 ### void setUserName(String userName)
 1. this.userName = userName;
 ### String getUserName()
@@ -151,3 +153,58 @@ implements HasMenu
 1. this.PIN = PIN;
 ### String getPIN()
 1. return PIN;
+## Algorithm for Customer
+extends User
+### static void main()
+// for testing
+1. Customer a = new Customer();
+1. a.setUserName("Alice");
+1. a.setPIN("1111");
+1. a.start();
+### Customer()
+1. checking = new CheckingAccount();
+1. savings = new SavingsAccount();
+### void start()
+1. if (super.login())
+    1. print "Login Successful"
+    1. String choice = "";
+    1. boolean keepGoing = true;
+    1. while (keepGoing)
+        1. choice = menu();
+        1. if (choice.equals("0"))
+            1. keepGoing = false;
+        1. else if (choice.equals("1"))
+            1. print "Checking Account"
+            1. checking.start();
+        1. else if (choice.equals("2"))
+            1. print "Savings Account"
+            1. savings.start();
+        1. else if (choice.equals("3"))
+            1. print "Change your PIN"
+            1. changePIN();
+        1. else
+            1. print "Invalid input, please try again"
+        1. end if
+    1. end while
+1. end if
+### String menu()
+1. Scanner input = new Scanner(System.in);
+1. String choice = "";
+1. print "Customer Menu"
+1. print "0) Exit"
+1. print "1) Manage Checking Account"
+1. print "2) Manage Savings Account"
+1. print "3) change PIN"
+1. print "Action (0-3): "
+1. choice = input.nextLine();
+1. return choice;
+### void changePIN()
+1. Scanner input = new Scanner(System.in);
+1. String newPIN = "";
+1. print "What would you like to change your PIN to? "
+1. newPIN = input.nextLine();
+1. super.setPIN(newPIN);
+### String getReport()
+1. print "User name: " + super.getUserName();
+1. print "Balance of Checking Account: " + checking.getBalanceString();
+1. print "Balance of Savings Account: " + savings.getBalanceString();
