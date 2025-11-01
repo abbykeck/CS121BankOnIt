@@ -61,7 +61,7 @@ implements HasMenu, Serializable
 ### CheckingAccount(double balance)
 1. set this.balance to balance
 ### static void main(String[] args) 
-// for testing
+(for testing)
 1. CheckingAccount c = new CheckingAccount();
 1. c.start();
 ### void start()
@@ -112,7 +112,7 @@ implements HasMenu, Serializable
 ## Algorithm for SavingsAccount
 extends CheckingAccount, implements HasMenu
 ### static void main(String[] args)
-// for testing
+(for testing)
 1. SavingsAccount a = new SavingsAccount();
 1. a.start();
 ### void calcInterest()
@@ -156,7 +156,7 @@ implements HasMenu
 ## Algorithm for Customer
 extends User
 ### static void main()
-// for testing
+Creates a test customer with userName "Alice" and PIN "1111"
 1. Customer a = new Customer();
 1. a.setUserName("Alice");
 1. a.setPIN("1111");
@@ -205,6 +205,8 @@ extends User
 1. newPIN = input.nextLine();
 1. super.setPIN(newPIN);
 ### String getReport()
-1. print "User name: " + super.getUserName();
-1. print "Balance of Checking Account: " + checking.getBalanceString();
-1. print "Balance of Savings Account: " + savings.getBalanceString();
+1. create a string called report
+1. add "User name: " + super.getUserName() to report
+1. add "Balance of Checking Account: " + checking.getBalanceString() to report
+1. add "Balance of Savings Account: " + savings.getBalanceString() to report
+1. return report;
