@@ -12,7 +12,7 @@ class CheckingAccount {
     + CheckingAccount(double balance)
     + void main()
     + String menu()
-    + void start()
+    + String start()
     + double getBalance()
     + String getBalanceString()
     + void setBalance(double balance)
@@ -23,10 +23,10 @@ class CheckingAccount {
 }
 class SavingsAccount {
     - double interestRate
-    + void main()
+    + main()
     + void calcInterest()
-    + void setInterestRate(double interestRate)
-    + double getInterestRate()
+    + void setInterestRate()
+    + void getInterestRate()
 }
 class User["User (abstract)"] {
     - String userName
@@ -49,10 +49,34 @@ class Customer {
     + void changePIN()
     + String getReport()
 }
-CheckingAccount <|-- SavingsAccount
-HasMenu <.. CheckingAccount
-HasMenu <.. User
-User <|-- Customer
+class Admin {
+    + Admin()
+    + String menu()
+    + String getReport()
+}
+class Bank {
+    - Admin admin
+    - ArrayList customers
+    + Bank()
+    + void main()
+    + void loadSampleCustomers()
+    + void loadCustomers()
+    + void saveCustomers()
+    + void fullCustomerReport()
+    + void addUser()
+    + void applyInterest()
+    + void loginAsCustomer()
+    + void menu()
+    + void start()
+    + void startAdmin()
+}
+CheckingAccount <|-- SavingsAccount : Extends
+HasMenu <.. CheckingAccount : Implements
+HasMenu <.. User : Implements
+User <|-- Customer : Extends
+User <|-- Admin : Extends
+Admin <--o Bank
+Customer <--o Bank
 ```
 ## Algorithm for CheckingAccount
 implements HasMenu, Serializable
@@ -210,3 +234,5 @@ Creates a test customer with userName "Alice" and PIN "1111"
 1. add "Balance of Checking Account: " + checking.getBalanceString() to report
 1. add "Balance of Savings Account: " + savings.getBalanceString() to report
 1. return report;
+## Algorithm for Admin
+## Algorithm for Bank
