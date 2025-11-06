@@ -236,6 +236,13 @@ Creates a test customer with userName "Alice" and PIN "1111"
 1. add "Balance of Savings Account: " + savings.getBalanceString() to report
 1. return report;
 ## Algorithm for Admin
+### static void main()
+Creates an admin with the default username and PIN, tests menu and getReport
+1. Admin a = new Admin();
+1. if (a.login())
+    1. String m = a.menu();
+    1. print "Menu choice: " + m
+    1. print a.getReport()
 ### Admin()
 1. set userName to "admin"
 1. set PIN to "0000"
