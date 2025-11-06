@@ -265,3 +265,10 @@ Creates an admin with the default username and PIN, tests menu and getReport
 1. add "Username: " + username + ", PIN: " + PIN
 1. return report;
 ## Algorithm for Bank
+### Bank()
+1. admin = new Admin();
+1. customers = new ArrayList<Customer>();
+1. loadCustomers();
+1. start();
+1. saveCustomers();
+

@@ -1,3 +1,6 @@
+Bank.class: Bank.java Admin.class Customer.class
+	javac -g Bank.java
+
 Customer.class: Customer.java User.class CheckingAccount.class SavingsAccount.class
 	javac -g Customer.java
 
@@ -27,6 +30,9 @@ testChecking: CheckingAccount.class
 
 testSavings: SavingsAccount.class
 	java SavingsAccount
+
+run: Bank.class
+	java Bank
 
 clean:
 	rm *.class
