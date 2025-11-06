@@ -52,6 +52,7 @@ class Customer {
 class Admin {
     + Admin()
     + String menu()
+    + void start()
     + String getReport()
 }
 class Bank {
@@ -235,4 +236,25 @@ Creates a test customer with userName "Alice" and PIN "1111"
 1. add "Balance of Savings Account: " + savings.getBalanceString() to report
 1. return report;
 ## Algorithm for Admin
+### Admin()
+1. set userName to "admin"
+1. set PIN to "0000"
+### String menu()
+1. Scanner input = new Scanner(System.in)
+1. String choice = ""
+1. print "Admin Menu"
+1. print "0) Exit this menu"
+1. print "1) Full customer report"
+1. print "2) Add user"
+1. print "3) Apply interest to savings accounts"
+1. print "Action: "
+1. choice = input.nextLine()
+1. return choice;
+### void start()
+1. Empty method, all of the admin actions will be managed in the Bank class
+### String getReport()
+1. String report = ""
+1. add "Admin report\n" to report
+1. add "Username: " + username + ", PIN: " + PIN
+1. return report;
 ## Algorithm for Bank
