@@ -59,6 +59,12 @@ public class Customer extends User implements Serializable {
 		newPIN = input.nextLine();
 		super.setPIN(newPIN);
 	} // end changePIN
+	public CheckingAccount getChecking() {
+		return checking;
+	} // end getChecking
+	public SavingsAccount getSavings() {
+		return savings;
+	} // end getSavings
 	public String getReport() {
 		String report = "User name: " + super.getUserName() + "\n";
 		report += "Balance of Checking Account: " + checking.getBalanceString() + "\n";

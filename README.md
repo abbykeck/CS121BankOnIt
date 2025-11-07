@@ -289,9 +289,13 @@ Creates an admin with the default username and PIN, tests menu and getReport
 1. while (keepGoing)
     1. choice = menu();
     1. if choice equals "0"
-        keepGoing = false;
+        1. keepGoing = false;
     1. else if choice equals "1"
-        1. admin.login();
+        1. if admin.login()
+            1. startAdmin();
+        1. else
+            1. print "Invalid login, try again"
+        1. end if
     1. else if choice equals "2"
         1. loginAsCustomer();
     1. else
@@ -301,18 +305,9 @@ Creates an admin with the default username and PIN, tests menu and getReport
 ### void loadSampleCustomers()
 Creates three sample customers for testing
 Customers Alice with PIN 1111, Bob with PIN 2222, and Cindy with PIN 3333
-1. Customer a = new Customer();
-1. a.setUserName("Alice");
-1. a.setPIN("1111");
-1. Customer b = new Customer();
-1. b.setUserName("Bob");
-1. b.setPIN("2222");
-1. Customer c = new Customer();
-1. c.setUserName("Cindy");
-1. c.setPIN("3333");
-1. customers.add(a);
-1. customers.add(b);
-1. customers.add(c);
+1. customers.add(new Customer("Alice", "1111"));
+1. customers.add(new Customer("Bob", "2222"));
+1. customers.add(new Customer("Cindy", "3333"));
 ### void fullCustomerReport()
 1. for every customer in customers
     1. print getReport()
@@ -355,4 +350,22 @@ Customers Alice with PIN 1111, Bob with PIN 2222, and Cindy with PIN 3333
 1. else
     1. print "User not found"
 1. end if
-
+### void startAdmin()
+1. String choice = "";
+1. boolean keepGoing = true;
+1. while (keepGoing)
+    1. choice = admin.menu();
+    1. if choice equals "0"
+        1. keepGoing = false;
+    1. else if choice equals "1"
+        1. fullCustomerReport();
+    1. else if choice equals "2"
+        1. addUser();
+    1. else if choice equals "3"
+        1. applyInterest();
+    1. else
+        1. print "Invalid input, please try again"
+    1. end if
+1. end while
+### class CustomerList
+Wrapper class for ArrayList of Customers for easier i/o

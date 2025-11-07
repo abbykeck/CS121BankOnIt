@@ -3,14 +3,14 @@ import java.io.*;
 
 public class Bank implements HasMenu {
 	private Admin admin;
-	private ArrayList<Customer> customers;
+	private CustomerList customers;
 	public static void main(String[] args) {
 		Bank b = new Bank();
 		b.start();
 	}
 	public Bank() {
 		admin = new Admin();
-		customers = new ArrayList<Customer>();
+		customers = new CustomerList();
 	} // end constructor
 	public String menu() {
 		Scanner input = new Scanner(System.in);
@@ -40,3 +40,5 @@ public class Bank implements HasMenu {
 		} // end while
 	} // end start
 } // end Bank
+
+class CustomerList extends ArrayList<Customer> {} // end CustomerList
