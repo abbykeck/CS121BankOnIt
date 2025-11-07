@@ -12,6 +12,7 @@ public class Bank implements HasMenu {
 		customers = new CustomerList();
 		loadSampleCustomers();
 		start();
+		saveCustomers();
 	} // end constructor
 	public String menu() {
 		Scanner input = new Scanner(System.in);
@@ -51,6 +52,17 @@ public class Bank implements HasMenu {
 		customers.get(0).getChecking().setBalance(1000.0);
 		customers.get(0).getSavings().setBalance(1000.0);
 	} // end loadSampleCustomers
+	public void saveCustomers() {
+		try {
+			FileOutputStream outFile = new FileOutputStream("customers.dat");
+			ObjectOutputStream output = new ObjectOutputStream(outFile);
+			output.writeObject(customers);
+			output.close();
+			outFile.close();
+		} catch (Exception e) {
+			System.out.println(e.getMessage());
+		} // end try
+	} // end saveCustomers
 	public void fullCustomerReport() {
 		for (Customer customer : customers) {
 			System.out.println(customer.getReport());

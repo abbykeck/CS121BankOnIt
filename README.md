@@ -269,7 +269,7 @@ Creates an admin with the default username and PIN, tests menu and getReport
 ## Algorithm for Bank
 ### Bank()
 1. admin = new Admin();
-1. customers = new ArrayList<Customer>();
+1. customers = new CustomerList();
 1. loadCustomers();
 1. start();
 1. saveCustomers();
@@ -308,6 +308,22 @@ Customers Alice with PIN 1111, Bob with PIN 2222, and Cindy with PIN 3333
 1. customers.add(new Customer("Alice", "1111"));
 1. customers.add(new Customer("Bob", "2222"));
 1. customers.add(new Customer("Cindy", "3333"));
+### void loadCustomers()
+1. try
+    1. make FileInputStream inFile for customers.dat
+    1. make ObjectInputStream input connected to inFile
+    1. customers = (CustomerList)input.readObject();
+    1. close input
+    1. close inFile
+1. if an error is caught, print it
+### void saveCustomers()
+1. try
+    1. Make FileOutputStream outFile w/ file name "customers.dat"
+    1. Make ObjectOutputStream output connected to outFile
+    1. Write customers to file
+    1. close output
+    1. close outFile
+1. if an error is caught, print it
 ### void fullCustomerReport()
 1. for every customer in customers
     1. print getReport()
