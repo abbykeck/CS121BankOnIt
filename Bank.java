@@ -10,7 +10,8 @@ public class Bank implements HasMenu {
 	public Bank() {
 		admin = new Admin();
 		customers = new CustomerList();
-		loadSampleCustomers();
+		loadCustomers();
+		//loadSampleCustomers();
 		start();
 		saveCustomers();
 	} // end constructor
@@ -36,12 +37,12 @@ public class Bank implements HasMenu {
 				if (admin.login()) {
 					startAdmin();
 				} else {
-					System.out.println("Invalid login, try again");
+					System.out.println("Invalid login, try again\n");
 				} // end if
 			} else if (choice.equals("2")) {
 				loginAsCustomer();
 			} else {
-				System.out.println("Invalid input, please try again");
+				System.out.println("Invalid input, please try again\n");
 			} // end if
 		} // end while
 	} // end start
@@ -52,6 +53,17 @@ public class Bank implements HasMenu {
 		customers.get(0).getChecking().setBalance(1000.0);
 		customers.get(0).getSavings().setBalance(1000.0);
 	} // end loadSampleCustomers
+	public void loadCustomers() {
+		try {
+			FileInputStream inFile = new FileInputStream("customers.dat");
+			ObjectInputStream input = new ObjectInputStream(inFile);
+			customers = (CustomerList)input.readObject();
+			input.close();
+			inFile.close();
+		} catch (Exception e) {
+			System.out.println(e.getMessage());
+		} // end try
+	} // end loadCustomers
 	public void saveCustomers() {
 		try {
 			FileOutputStream outFile = new FileOutputStream("customers.dat");
@@ -103,7 +115,7 @@ public class Bank implements HasMenu {
 		if (currentCustomer != null) {
 			currentCustomer.start();
 		} else {
-			System.out.println("User not found");
+			System.out.println("User not found, please double check spelling and try again\n");
 		} // end if
 	} // end loginAsCustomer
 	public void startAdmin() {
@@ -120,7 +132,7 @@ public class Bank implements HasMenu {
 			} else if (choice.equals("3")) {
 				applyInterest();
 			} else {
-				System.out.println("Invalid input, please try again");
+				System.out.println("Invalid input, please try again\n");
 			} // end if
 		} // end while
 	} // end startAdmin

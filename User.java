@@ -11,10 +11,14 @@ public abstract class User implements HasMenu, Serializable {
 		String inputPIN = "";
 		System.out.print("User name: ");
 		inputName = input.nextLine();
-		System.out.print("PIN: ");
-		inputPIN = input.nextLine();
-		if (userName.equals(inputName) && PIN.equals(inputPIN)) {
-			return true;
+		if (userName.equals(inputName)) {
+			System.out.print("PIN: ");
+                	inputPIN = input.nextLine();
+			if (PIN.equals(inputPIN)) {
+				return true;
+			} else {
+				return false;
+			} // end if
 		} else {
 			return false;
 		} // end if

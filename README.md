@@ -1,4 +1,12 @@
 # Algorithm for Bank On It project
+## Sample user logins
+Admin:
+* Username: admin, PIN: 0000
+Customers:
+* Username: Alice, PIN: 1111
+* Username: Bob, PIN: 2222
+* Username: Cindy, PIN: 3333
+* Username: Dave, PIN: 4444
 ## Mermaid diagram
 ```mermaid
 classDiagram
