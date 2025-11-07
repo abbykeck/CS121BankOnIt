@@ -5,12 +5,13 @@ public class Bank implements HasMenu {
 	private Admin admin;
 	private CustomerList customers;
 	public static void main(String[] args) {
-		Bank b = new Bank();
-		b.start();
+		new Bank();
 	}
 	public Bank() {
 		admin = new Admin();
 		customers = new CustomerList();
+		loadSampleCustomers();
+		start();
 	} // end constructor
 	public String menu() {
 		Scanner input = new Scanner(System.in);
@@ -31,7 +32,11 @@ public class Bank implements HasMenu {
 			if (choice.equals("0")) {
 				keepGoing = false;
 			} else if (choice.equals("1")) {
-				System.out.println("Logging in as admin...");
+				if (admin.login()) {
+					startAdmin();
+				} else {
+					System.out.println("Invalid login, try again");
+				} // end if
 			} else if (choice.equals("2")) {
 				System.out.println("Logging in as customer...");
 			} else {
@@ -39,6 +44,74 @@ public class Bank implements HasMenu {
 			} // end if
 		} // end while
 	} // end start
+	public void loadSampleCustomers() {
+		customers.add(new Customer("Alice", "1111"));
+		customers.add(new Customer("Bob", "2222"));
+		customers.add(new Customer("Cindy", "3333"));
+		customers.get(0).getChecking().setBalance(1000.0);
+		customers.get(0).getSavings().setBalance(1000.0);
+	} // end loadSampleCustomers
+	public void fullCustomerReport() {
+		for (Customer customer : customers) {
+			System.out.println(customer.getReport());
+		} // end for
+		System.out.println();
+	} // end fullCustomerReport
+	public void addUser() {
+		Scanner input = new Scanner(System.in);
+		String username = "";
+		String pin = "";
+		System.out.print("Name: ");
+		username = input.nextLine();
+		System.out.print("PIN: ");
+		pin = input.nextLine();
+		customers.add(new Customer(username, pin));
+	} // end addUser
+	public void applyInterest() {
+		for (Customer customer : customers) {
+			customer.getSavings().calcInterest();
+			System.out.println("New balance: " + customer.getSavings().getBalanceString());
+		} // end for
+		System.out.println();
+	} // end applyInterest
+	public void loginAsCustomer() {
+		Scanner input = new Scanner(System.in);
+		String username = "";
+		String pin = "";
+		System.out.print("User name: ");
+		username = input.nextLine();
+		System.out.print("PIN: ");
+		pin = input.nextLine();
+		Customer currentCustomer = null;
+		for (Customer customer : customers) {
+			if (customer.login(username, pin)) {
+				currentCustomer = customer;
+			} // end if
+		} // end for
+		if (currentCustomer != null) {
+			currentCustomer.start();
+		} else {
+			System.out.println("User not found");
+		} // end if
+	} // end loginAsCustomer
+	public void startAdmin() {
+		String choice = "";
+		boolean keepGoing = true;
+		while (keepGoing) {
+			choice = admin.menu();
+			if (choice.equals("0")) {
+				keepGoing = false;
+			} else if (choice.equals("1")) {
+				fullCustomerReport();
+			} else if (choice.equals("2")) {
+				addUser();
+			} else if (choice.equals("3")) {
+				applyInterest();
+			} else {
+				System.out.println("Invalid input, please try again");
+			} // end if
+		} // end while
+	} // end startAdmin
 } // end Bank
 
 class CustomerList extends ArrayList<Customer> {} // end CustomerList

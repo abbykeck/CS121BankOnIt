@@ -8,6 +8,10 @@ public class SavingsAccount extends CheckingAccount implements HasMenu, Serializ
 		SavingsAccount s = new SavingsAccount();
 		s.start();
 	} // end main
+	public SavingsAccount() {
+		super();
+		interestRate = 0.05;
+	} // end constructor
 	public void calcInterest() {
 		double interest = super.getBalance() * interestRate;
 		super.setBalance(super.getBalance() + interest);

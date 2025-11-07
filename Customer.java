@@ -14,7 +14,13 @@ public class Customer extends User implements Serializable {
 	public Customer() {
 		checking = new CheckingAccount();
 		savings = new SavingsAccount();
-	} // end constructor
+	} // end null parameter constructor
+	public Customer(String userName, String PIN) {
+		checking = new CheckingAccount();
+		savings = new SavingsAccount();
+		super.setUserName(userName);
+		super.setPIN(PIN);
+	} // end two parameter constructor
 	public void start() {
 		if (super.login()) {
 			System.out.println("Login Successful\n");
@@ -66,9 +72,9 @@ public class Customer extends User implements Serializable {
 		return savings;
 	} // end getSavings
 	public String getReport() {
-		String report = "User name: " + super.getUserName() + "\n";
-		report += "Balance of Checking Account: " + checking.getBalanceString() + "\n";
-		report += "Balance of Savings Account: " + savings.getBalanceString();
+		String report = "User: " + super.getUserName() + ", ";
+		report += "Checking: " + checking.getBalanceString() +", ";
+		report += "Savings: " + savings.getBalanceString();
 		return report;
 	} // end getReport
 } // end Customer
