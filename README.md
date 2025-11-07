@@ -44,6 +44,8 @@ class Customer {
     - SavingsAccount savings
     + void main()
     + Customer()
+    + CheckingAccount getChecking()
+    + SavingsAccount getSavings()
     + void start()
     + String menu()
     + void changePIN()
@@ -271,4 +273,86 @@ Creates an admin with the default username and PIN, tests menu and getReport
 1. loadCustomers();
 1. start();
 1. saveCustomers();
+### String menu()
+1. Make scanner for user input
+1. String choice = ""
+1. print "Bank Menu"
+1. print "0) Exit system"
+1. print "1) Login as admin"
+1. print "2) Login as customer"
+1. print "Action: "
+1. put input into choice
+1. return choice;
+### void start()
+1. String choice = ""
+1. bool keepGoing = true
+1. while (keepGoing)
+    1. choice = menu();
+    1. if choice equals "0"
+        keepGoing = false;
+    1. else if choice equals "1"
+        1. admin.login();
+    1. else if choice equals "2"
+        1. loginAsCustomer();
+    1. else
+        1. print "Invalid input, please try again"
+    1. end if
+1. end while
+### void loadSampleCustomers()
+Creates three sample customers for testing
+Customers Alice with PIN 1111, Bob with PIN 2222, and Cindy with PIN 3333
+1. Customer a = new Customer();
+1. a.setUserName("Alice");
+1. a.setPIN("1111");
+1. Customer b = new Customer();
+1. b.setUserName("Bob");
+1. b.setPIN("2222");
+1. Customer c = new Customer();
+1. c.setUserName("Cindy");
+1. c.setPIN("3333");
+1. customers.add(a);
+1. customers.add(b);
+1. customers.add(c);
+### void fullCustomerReport()
+1. for every customer in customers
+    1. print getReport()
+1. end for
+### void addUser()
+1. Make scanner for user input
+1. String username = ""
+1. String pin = ""
+1. print "Name: "
+1. set username to input
+1. print "PIN: "
+1. set pin to input
+1. Customer d = new Customer();
+1. d.setUserName(username);
+1. d.setPIN(pin);
+1. customers.add(d);
+### void applyInterest()
+1. for each customer in customers
+    1. calcInterest() for savings account
+    1. print "New balance: " + balance of savings
+1. end for
+### void loginAsCustomer()
+1. Make scanner for user input
+1. String username = ""
+1. String pin = ""
+1. print "User name: "
+1. set username to input
+1. print "PIN: "
+1. set pin to input
+1. bool userExists = false
+1. Customer currentCustomer = null
+1. for every customer in customers
+    1. if customer.login(username, pin)
+        1. userExists = true
+        1. currentCustomer = customer
+    1. end if
+1. end for
+1. if userExists == true
+    1. customer.start();
+1. else
+    1. print "User not found"
+1. end if
 
