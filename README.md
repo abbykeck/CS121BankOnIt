@@ -1,8 +1,8 @@
 # Algorithm for Bank On It project
 ## Sample user logins
-Admin:
+### Admin:
 * Username: admin, PIN: 0000
-Customers:
+### Customers:
 * Username: Alice, PIN: 1111
 * Username: Bob, PIN: 2222
 * Username: Cindy, PIN: 3333
