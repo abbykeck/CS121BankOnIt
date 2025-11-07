@@ -9,7 +9,9 @@ public class Customer extends User implements Serializable {
 		Customer a = new Customer();
 		a.setUserName("Alice");
 		a.setPIN("1111");
-		a.start();
+		if (a.login()) {
+			a.start();
+		} // end if
 	} // end main
 	public Customer() {
 		checking = new CheckingAccount();
@@ -22,29 +24,27 @@ public class Customer extends User implements Serializable {
 		super.setPIN(PIN);
 	} // end two parameter constructor
 	public void start() {
-		if (super.login()) {
-			System.out.println("Login Successful\n");
-			String choice = "";
-			boolean keepGoing = true;
-			while (keepGoing) {
-				choice = menu();
-				if (choice.equals("0")) {
-					keepGoing = false;
-				} else if (choice.equals("1")) {
-					System.out.println("Checking Account\n");
-					checking.start();
-				} else if (choice.equals("2")) {
-					System.out.println("Savings Account\n");
-					savings.start();
-				} else if (choice.equals("3")) {
-					System.out.println("Change your PIN\n");
-					changePIN();
-				} else {
-					System.out.println("Invalid input, please try again");
-				} // end if
-				System.out.println();
-			} // end while
-		} // end if
+		System.out.println("Login Successful\n");
+		String choice = "";
+		boolean keepGoing = true;
+		while (keepGoing) {
+			choice = menu();
+			if (choice.equals("0")) {
+				keepGoing = false;
+			} else if (choice.equals("1")) {
+				System.out.println("Checking Account\n");
+				checking.start();
+			} else if (choice.equals("2")) {
+				System.out.println("Savings Account\n");
+				savings.start();
+			} else if (choice.equals("3")) {
+				System.out.println("Change your PIN\n");
+				changePIN();
+			} else {
+				System.out.println("Invalid input, please try again");
+			} // end if
+			System.out.println();
+		} // end while
 	} // end start
 	public String menu() {
 		Scanner input = new Scanner(System.in);

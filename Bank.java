@@ -38,7 +38,7 @@ public class Bank implements HasMenu {
 					System.out.println("Invalid login, try again");
 				} // end if
 			} else if (choice.equals("2")) {
-				System.out.println("Logging in as customer...");
+				loginAsCustomer();
 			} else {
 				System.out.println("Invalid input, please try again");
 			} // end if
